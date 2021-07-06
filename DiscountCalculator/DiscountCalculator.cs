@@ -21,8 +21,27 @@ namespace Discount.Calculators
         {
             this.order = order;
         }
-        
-        
+
+
+        public void CalculateTotalDiscount()
+        {
+            if (cangetDiscountForTools())
+            {
+                calculateToolPercent();
+            }
+            
+            freeSwitches();
+
+            if (cangetDiscountForTools())
+            {
+                calculateToolPercent();
+            }
+
+            if (clientGetsWholeOrderDiscount())
+            {
+                CalculateTotalDiscount();
+            }
+        }
 
         public bool clientGetsWholeOrderDiscount()
         {
