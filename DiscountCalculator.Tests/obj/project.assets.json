@@ -1791,19 +1791,6 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "DAL": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Application.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Application.dll": {}
-        }
-      },
       "DAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -6397,11 +6384,6 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Application/1.0.0": {
-      "type": "project",
-      "path": "../Application/Application.csproj",
-      "msbuildProject": "../Application/Application.csproj"
-    },
     "DAL/1.0.0": {
       "type": "project",
       "path": "../DAL/DAL.csproj",
@@ -6420,7 +6402,6 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Application >= 1.0.0",
       "DAL >= 1.0.0",
       "DiscountCalculator >= 1.0.0",
       "Domain >= 1.0.0",
@@ -6456,9 +6437,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/home/elia/Documents/becode/discounts/Application/Application.csproj": {
-              "projectPath": "/home/elia/Documents/becode/discounts/Application/Application.csproj"
-            },
             "/home/elia/Documents/becode/discounts/DAL/DAL.csproj": {
               "projectPath": "/home/elia/Documents/becode/discounts/DAL/DAL.csproj"
             },

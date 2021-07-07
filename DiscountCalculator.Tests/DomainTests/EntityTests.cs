@@ -101,26 +101,7 @@ namespace DiscountCalculator.Tests.DomainTests
             Assert.Equal(new Money(12.0m,"EUR"),product.price); 
             
         }
-
-        [Fact]
-        public void ProductConstructorTest()
-        {
-            
-            ProductDto productDto = new ProductDto()
-            {
-                id = "1", description = "a", category = 1, price = 12.0m
-            };
-
-
-            Product product = new Product(productDto);
-
-            Assert.Equal("1",product.id); 
-            Assert.Equal("a",product.description); 
-            Assert.Equal(1,product.category); 
-            Assert.Equal(new Money(12.0m,"EUR"),product.price); 
-
-
-        }
+        
 
         [Fact]
         public void ClientConstructorTest()

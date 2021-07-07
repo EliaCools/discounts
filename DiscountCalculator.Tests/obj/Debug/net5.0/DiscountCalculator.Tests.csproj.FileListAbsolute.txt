@@ -221,9 +221,4 @@ C:/Users/ArneCools/engine27-local/dotnet-discount/DiscountCalculator.Tests/bin/D
 /home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Resources/products.json
 /home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/DAL.dll
 /home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/DAL.pdb
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application.deps.json
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application.runtimeconfig.json
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application.runtimeconfig.dev.json
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application.dll
-/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Application.pdb
+/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/bin/Debug/net5.0/Resources/mockOrders/Mockorder1.json

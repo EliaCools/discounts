@@ -20,10 +20,9 @@ namespace Discount.UnitTests.Services
         public void CanConvertToOrderTest()
         {
             JsonFileToObject jsonToOrder = new JsonFileToObject();
-
-            DtoToModelConverter converter = new DtoToModelConverter();
             
-            Assert.True(jsonToOrder.convertJsonToOrder("Resources/orders/order1.json", converter) is Order );
+            
+            Assert.True(jsonToOrder.convertJsonToOrder("Resources/orders/order1.json", new DataMapper()) is Order );
             
         }
         

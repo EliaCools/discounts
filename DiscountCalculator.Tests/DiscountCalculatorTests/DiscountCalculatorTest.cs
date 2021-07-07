@@ -73,14 +73,14 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
         }
         
         
-        [Theory]
-        [MemberData(nameof(CalculatorDataGenerator.clientGetsToolDiscount), MemberType= typeof(CalculatorDataGenerator))]
-        public void Find_cheapest_tool(Order order)
-        {
-            
-            Assert.Equal(new DiscountCalculator(order).getCheapestToolItem().unitPrice, new Money(9.75m,"EUR"));
-            
-        }
+   //    [Theory]
+   //    [MemberData(nameof(CalculatorDataGenerator.clientGetsToolDiscount), MemberType= typeof(CalculatorDataGenerator))]
+   //    public void Find_cheapest_tool(Order order)
+   //    {
+   //        
+   //        Assert.Equal(new DiscountCalculator(order).cheapestToolItemIndex().unitPrice, new Money(9.75m,"EUR"));
+   //        
+   //    }
         
         [Theory]
         [MemberData(nameof(CalculatorDataGenerator.clientGetsToolDiscount), MemberType= typeof(CalculatorDataGenerator))]
@@ -89,6 +89,42 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
             new DiscountCalculator(order).calculateToolPercent();
             Assert.Equal(new Money(67.05m,"EUR"),order.total);
             
+        }
+        [Theory]
+        [MemberData(nameof(CalculatorDataGenerator.TotalDiscountTwoFreeSwitches), MemberType= typeof(CalculatorDataGenerator))]
+   
+        public void TOTAL_DISCOUNT_TEST_FREE_SWITCHES(Order order)
+        {
+            Order undiscountedOrder = order;
+            
+            new DiscountCalculator(order).CalculateTotalDiscount();
+            Assert.Equal(12,order.items[0].quantity);
+            Assert.Equal(undiscountedOrder.total,order.total);
+
+        }
+        [Theory]
+        [MemberData(nameof(CalculatorDataGenerator.TotalDiscountGlobalDiscount), MemberType= typeof(CalculatorDataGenerator))]
+
+        public void TOTAL_DISCOUNT_TEST_GLOBAL_DISCOUNT(Order order, Money percentage)
+        {
+            
+            
+            new DiscountCalculator(order).CalculateTotalDiscount();
+            Assert.Equal(6,order.items[0].quantity);
+            Assert.Equal(percentage,order.total);
+
+        }
+        [Theory]
+        [MemberData(nameof(CalculatorDataGenerator.totalDiscountWithToolDiscount), MemberType= typeof(CalculatorDataGenerator))]
+
+        public void TOTAL_DISCOUNT_WITH_TOOL_DISCOUNT(Order order)
+        {
+
+            
+            new DiscountCalculator(order).CalculateTotalDiscount();
+
+            Assert.Equal(order.total,order.total);
+
         }
  
         

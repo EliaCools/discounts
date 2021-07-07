@@ -38,7 +38,7 @@ namespace DiscountCalculator.Tests.DALTests
             List<Client> badClientList = new List<Client>();
             badClientList.Add(wrongClient);
             
-            DtoToModelConverter converter = new DtoToModelConverter();
+            DataMapper converter = new DataMapper();
         
             Assert.Throws<ArgumentException>(() => converter.convertOrderDtoToOrder(orderDto, badClientList, products));
             Assert.Equal(orderDto.customerId, converter.convertOrderDtoToOrder(orderDto,rightClientList, products).client.id);
@@ -72,7 +72,7 @@ namespace DiscountCalculator.Tests.DALTests
             
 
             
-            DtoToModelConverter converter = new DtoToModelConverter();
+            DataMapper converter = new DataMapper();
         
         
             Assert.Equal(orderDto.customerId, converter.convertOrderDtoToOrder(orderDto,clients, products).client.id);

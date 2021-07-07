@@ -8,7 +8,7 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
     public class CalculatorDataGenerator
     {
         private static JsonFileToObject objectFetcher = new JsonFileToObject() ;
-        private static DtoToModelConverter converter = new DtoToModelConverter();
+        private static DataMapper converter = new DataMapper();
 
         
         public static IEnumerable<object[]> ClientsBelowThousand()
@@ -75,12 +75,15 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
         public static IEnumerable<object[]> clientGetsToolDiscount()
         {
             Order toolDiscount = objectFetcher.convertJsonToOrder("Resources/orders/order3.json", converter);
+            Order toolDiscount2 = objectFetcher.convertJsonToOrder("Resources/mockOrders/mockOrder1.json", converter);
        
 
 
             var allData = new List<object[]>
             {
+                new object[] {toolDiscount2},
                 new object[] {toolDiscount},
+
                 
             };
 
@@ -103,6 +106,54 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
 
             return allData;
         }
+        
+        public static IEnumerable<object[]> TotalDiscountTwoFreeSwitches()
+        {
+            Order freeSwitchDisc = objectFetcher.convertJsonToOrder("Resources/orders/order1.json", converter);
+
+
+
+            var allData = new List<object[]>
+            {
+                new object[] {freeSwitchDisc},
+
+            };
+
+            return allData;
+        }
+        
+        public static IEnumerable<object[]> TotalDiscountGlobalDiscount()
+        {
+            Order order = objectFetcher.convertJsonToOrder("Resources/orders/order2.json", converter);
+            
+            var allData = new List<object[]>
+            {
+                new object[] {order, order.total - (order.total / 10)},
+
+            };
+
+            return allData;
+        }
+        
+        
+        public static IEnumerable<object[]> totalDiscountWithToolDiscount()
+        {
+            Order toolDiscount = objectFetcher.convertJsonToOrder("Resources/orders/order3.json", converter);
+       
+
+
+            var allData = new List<object[]>
+            {
+                new object[] {toolDiscount},
+
+                
+            };
+
+            return allData;
+        }
+
 
     }
+    
+    
 }

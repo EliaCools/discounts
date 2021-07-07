@@ -4,62 +4,6 @@
     "/home/elia/Documents/becode/discounts/DiscountCalculator.Tests/DiscountCalculator.Tests.csproj": {}
   },
   "projects": {
-    "/home/elia/Documents/becode/discounts/Application/Application.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/elia/Documents/becode/discounts/Application/Application.csproj",
-        "projectName": "Application",
-        "projectPath": "/home/elia/Documents/becode/discounts/Application/Application.csproj",
-        "packagesPath": "/home/elia/.nuget/packages/",
-        "outputPath": "/home/elia/Documents/becode/discounts/Application/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/elia/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "/home/elia/Documents/becode/discounts/DAL/DAL.csproj": {
-                "projectPath": "/home/elia/Documents/becode/discounts/DAL/DAL.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/129/sdk/5.0.301/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/home/elia/Documents/becode/discounts/DAL/DAL.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -138,9 +82,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/home/elia/Documents/becode/discounts/Application/Application.csproj": {
-                "projectPath": "/home/elia/Documents/becode/discounts/Application/Application.csproj"
-              },
               "/home/elia/Documents/becode/discounts/DAL/DAL.csproj": {
                 "projectPath": "/home/elia/Documents/becode/discounts/DAL/DAL.csproj"
               },
