@@ -8,7 +8,7 @@ using NodaMoney;
 
 namespace DAL
 {
-    public class DtoToModelConverter
+    public class DataMapper
     {
 
 
@@ -69,6 +69,37 @@ namespace DAL
               }
 
               return items;
+          }
+
+
+
+          public OrderDto convertOrderToOrderDto(Order order)
+          {
+
+            OrderDto orderDto =  new OrderDto() {id = order.id ,customerId = order.client.id, items = convertItemsToItemsDtos(order), total = order.total.Amount};
+
+            return orderDto;
+
+          }
+
+
+          private List<ItemDto> convertItemsToItemsDtos(Order order)
+          {
+
+              List<ItemDto> itemDtos = new List<ItemDto>();
+            
+
+              foreach (var item in order.items)
+              {
+                  
+                  itemDtos.Add(new ItemDto(){productId = item.product.id, quantity = item.quantity, total = item.total.Amount, unitPrice = item.unitPrice.Amount});
+                  
+                  
+              }
+
+              return itemDtos;
+
+
           }
       
         

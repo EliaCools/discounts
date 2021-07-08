@@ -18,18 +18,9 @@ namespace Domain.Orders
         
         public Item()
         {
+            
         }
         
-
-        public int CompareTo(Item comparePart)
-        {
-            // A null value means that this object is greater.
-            if (comparePart == null)
-            
-                return 1;
-            
-            return this.unitPrice.CompareTo(comparePart.unitPrice);
-        }
     }
     
     

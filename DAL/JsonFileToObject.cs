@@ -21,7 +21,7 @@ namespace DAL
     {
 
         
-          public Order convertJsonToOrder(String path , DtoToModelConverter dtoToModelConverter)
+          public Order convertJsonToOrder(String path , DataMapper dataMapper)
           {
               using (StreamReader r = new StreamReader(path))
               {
@@ -30,7 +30,7 @@ namespace DAL
 
                   
 
-                  Order order = dtoToModelConverter.convertOrderDtoToOrder(orderDto, convertJsonToClients(), convertJsonToProducts());
+                  Order order = dataMapper.convertOrderDtoToOrder(orderDto, convertJsonToClients(), convertJsonToProducts());
 
                   return order;
                   

@@ -14,7 +14,7 @@ namespace DiscountCalculator.Tests.DALTests
 
             Order order = jsonToOrder.convertJsonToOrder("Resources/orders/order1.json", new DataMapper());
 
-            ConvertOrderDiscountToJson orderDiscountToJson = new ConvertOrderDiscountToJson();
+            ConvertOrderToJson orderDiscountToJson = new ConvertOrderToJson();
             orderDiscountToJson.CreateJsonFromOrder(order, new DataMapper());
             
             Assert.Equal(1,1); 

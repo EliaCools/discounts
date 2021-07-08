@@ -14,12 +14,6 @@ namespace Domain.Orders
         public Client client { get; set; }
         public List<Item> items { get; set; }
         public Money total { get; set; }
-
-
-        
-        public Order(){}
-        
-
         
     }
 }

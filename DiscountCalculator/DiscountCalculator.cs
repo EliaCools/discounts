@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Domain.Clients;
 using Domain.Orders;
 using Domain.OrdersDto;
 using Domain.Products;
 using NodaMoney;
+using Domain.Discounts;
+
+
 
 namespace Discount.Calculators
 {
@@ -16,14 +21,16 @@ namespace Discount.Calculators
      
 
         private Order order;
-        private List<KeyValuePair<String, String>> discountLog;
+
+        public DiscountLog discountLog { get; set; }
         public DiscountCalculator(Order order)
         {
             this.order = order;
+            this.discountLog = new DiscountLog(){order = order};
         }
 
-
-        public void CalculateTotalDiscount()
+        
+        public Order CalculateTotalDiscount()
         {
             if (cangetDiscountForTools())
             {
@@ -39,8 +46,10 @@ namespace Discount.Calculators
 
             if (clientGetsWholeOrderDiscount())
             {
-                CalculateTotalDiscount();
+                applyGlobalDiscount();
             }
+
+            return order;
         }
 
         public bool clientGetsWholeOrderDiscount()
@@ -59,7 +68,6 @@ namespace Discount.Calculators
 
             Money totalMinusTenPc = this.order.total - (this.order.total / 10);
 
-          //  this.discountLog.Add(new KeyValuePair<string, string>("GlobalDiscount",$"{this.order.total.ToString()} - 10% ")); 
 
             this.order.total = totalMinusTenPc;
 
@@ -109,7 +117,7 @@ namespace Discount.Calculators
 
                 if (item.product.category == TOOLS_CATEGORY)
                 {
-                    itemsInToolsCategory += 1;
+                    itemsInToolsCategory += item.quantity;;
                 }
                 
             }
@@ -127,48 +135,14 @@ namespace Discount.Calculators
         
         private static int compareIemsByUnitPrice(Item x, Item y)
         {
-            if (x == null)
-            {
-                if (y == null)
-                {
-                    // If x is null and y is null, they're
-                    // equal.
-                    return 0;
-                }
-                else
-                {
-                    // If x is null and y is not null, y
-                    // is greater.
-                    return -1;
-                }
-            }
-            else
-            {
-                // If x is not null...
-                //
-                if (y == null)
-                    // ...and y is null, x is greater.
-                {
-                    return 1;
-                }
-                else
-                {
-                    int retval = x.unitPrice.CompareTo(y.unitPrice);
+    
+                    return x.unitPrice.CompareTo(y.unitPrice);
 
-                    if (retval != 0)
-                    {
-
-                        return retval;
-                    }
-                    else
-                    {
-                        return x.product.id.CompareTo(y);
-                    }
-                }
-            }
+     
+            
         }
 
-        public Item getCheapestToolItem()
+        public int cheapestToolItemIndex()
         {
 
             List<Item> toolItems = new List<Item>();
@@ -184,20 +158,44 @@ namespace Discount.Calculators
             }
             toolItems.Sort(compareIemsByUnitPrice);
 
-            return toolItems[0];
+            Item cheapestItem = toolItems[0];
 
+            int refindIndex = 0;
+
+            foreach (var orderitem in order.items)
+            {
+                
+                if (orderitem.product == cheapestItem.product)
+                {
+                    break;
+                }
+                
+                refindIndex++;
+            }
+
+            return refindIndex;
 
         }
-
+            
         public void calculateToolPercent()
         {
 
-            Item item = getCheapestToolItem();
+            Item cheapestItem = order.items[cheapestToolItemIndex()];
 
-            Money calculatePc = item.unitPrice / 5;
+            Money calculatePc = cheapestItem.unitPrice / 5;
+
+
+
+            order.items[cheapestToolItemIndex()].total = order.items[cheapestToolItemIndex()].total - calculatePc;
 
             order.total = order.total - calculatePc;
-          // this.discountLog.Add(new KeyValuePair<string, string>("ToolDiscount",$" 5% of {item.product.description} for buying two items of category tools"));
+
+
+           
+
+       
+           // todo logging object data gives nul reference error.
+            
         }
         
         
