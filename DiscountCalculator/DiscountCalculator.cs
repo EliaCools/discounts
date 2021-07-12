@@ -15,10 +15,7 @@ namespace Discount.Calculators
 {
     public class DiscountCalculator
     {
-        private const int SWITCH_CATEGORY = 2;
-        private const int TOOLS_CATEGORY = 1;
-        private const int MIN_TOOLS_FOR_TOOL_DISC = 2;
-     
+        
 
         private Order order;
 
@@ -30,53 +27,28 @@ namespace Discount.Calculators
         }
 
         
-        public Order CalculateTotalDiscount()
-        {
-            if (cangetDiscountForTools())
-            {
-                calculateToolPercent();
-            }
-            
-            freeSwitches();
 
-            if (cangetDiscountForTools())
-            {
-                calculateToolPercent();
-            }
 
-            if (clientGetsWholeOrderDiscount())
-            {
-                applyGlobalDiscount();
-            }
 
-            return order;
-        }
-
-        public bool clientGetsWholeOrderDiscount()
+        public DiscountCalculator GlobalDiscount(int percentage, Money minimumRevenue )
         {
             
-           if (this.order.client.revenue < new Money(1000m,"EUR"))
-           {
-               return false;
-           }
-           
-           return true;
+            if (this.order.client.revenue >= minimumRevenue)
+            {
+                this.order.total = this.order.total - ((decimal) percentage / 100 * this.order.total);
+            }
+
+            return this;
+
         }
 
-        public void applyGlobalDiscount()
+        
+        
+        
+        
+        public DiscountCalculator freeItems(int productCategory)
         {
-
-            Money totalMinusTenPc = this.order.total - (this.order.total / 10);
-
-
-            this.order.total = totalMinusTenPc;
-
-            
-        }
-
-        public void freeSwitches()
-        {
-            int freeSwitches = 0;
+            int freeItems = 0;
 
             Order originalOrder = order;
 
@@ -85,7 +57,7 @@ namespace Discount.Calculators
             foreach (var item in this.order.items)
             {
 
-                if (item.product.category == SWITCH_CATEGORY)
+                if (item.product.category == productCategory)
                 {
                     
                     for (int i = 0; i <= item.quantity; i++)
@@ -94,35 +66,34 @@ namespace Discount.Calculators
                         {
                             eligibleItems.Add(item);
                             item.quantity += 1;
-                            freeSwitches++;
+                            freeItems++;
                         }
                     }
                     
                 }
                 
             }
-            
-           //Todo display calculation 
-            
+
+            return this;
         }
 
 
 
-        public bool cangetDiscountForTools()
+        public bool canGetDiscountForCategory(int category, int minimumItemsInCategory)
         {
-            int itemsInToolsCategory = 0;
+            int itemsInCategory = 0;
 
             foreach (var item in this.order.items)
             {
 
-                if (item.product.category == TOOLS_CATEGORY)
+                if (item.product.category == category)
                 {
-                    itemsInToolsCategory += item.quantity;;
+                    itemsInCategory += item.quantity;;
                 }
                 
             }
 
-            if (itemsInToolsCategory < MIN_TOOLS_FOR_TOOL_DISC)
+            if (itemsInCategory < minimumItemsInCategory)
             {
                 return false;
             }
@@ -133,32 +104,37 @@ namespace Discount.Calculators
             
         }
         
-        private static int compareIemsByUnitPrice(Item x, Item y)
+        private static int compareItemsByUnitPrice(Item x, Item y)
         {
     
                     return x.unitPrice.CompareTo(y.unitPrice);
-
-     
-            
+                    
         }
 
-        public int cheapestToolItemIndex()
+        private int cheapestItemIndex(int category)
         {
 
-            List<Item> toolItems = new List<Item>();
+            List<Item> itemsInCategory = new List<Item>();
 
             foreach (var item in order.items)
             {
 
-                if (item.product.category == TOOLS_CATEGORY)
+                if (item.product.category == category)
                 {
-                    toolItems.Add(item);
+                    itemsInCategory.Add(item);
                 }
                 
             }
-            toolItems.Sort(compareIemsByUnitPrice);
 
-            Item cheapestItem = toolItems[0];
+            if (!itemsInCategory.Any())
+            {
+                throw new Exception("Client does not have items in this category");
+            }
+            
+            
+            itemsInCategory.Sort(compareItemsByUnitPrice);
+
+            Item cheapestItem = itemsInCategory[0];
 
             int refindIndex = 0;
 
@@ -173,29 +149,29 @@ namespace Discount.Calculators
                 refindIndex++;
             }
 
+        
+
             return refindIndex;
 
         }
             
-        public void calculateToolPercent()
+        public DiscountCalculator giveDiscountByCategory(int percentage, int category, int minimumItemsInCategory)
         {
 
-            Item cheapestItem = order.items[cheapestToolItemIndex()];
-
-            Money calculatePc = cheapestItem.unitPrice / 5;
-
-
-
-            order.items[cheapestToolItemIndex()].total = order.items[cheapestToolItemIndex()].total - calculatePc;
-
+            if (!canGetDiscountForCategory(category,minimumItemsInCategory))
+            {
+                return this;
+            }
+            
+            Item cheapestItem = order.items[cheapestItemIndex(category)];
+            Money calculatePc = ((decimal) percentage / 100 * cheapestItem.unitPrice);
+            
+            order.items[cheapestItemIndex(category)].total = order.items[cheapestItemIndex(category)].total - calculatePc;
             order.total = order.total - calculatePc;
 
 
-           
+            return this;
 
-       
-           // todo logging object data gives nul reference error.
-            
         }
         
         

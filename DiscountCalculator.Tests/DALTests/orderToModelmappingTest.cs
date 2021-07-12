@@ -3,6 +3,7 @@ using System.Linq;
 using DAL;
 using Domain.Orders;
 using Domain.OrdersDto;
+using NodaMoney;
 using Xunit;
 
 namespace DiscountCalculator.Tests.DALTests
@@ -24,12 +25,15 @@ namespace DiscountCalculator.Tests.DALTests
             JsonFileToObject jsonFileToObject = new JsonFileToObject();
             Order order = jsonFileToObject.convertJsonToOrder("Resources/orders/order1.json", new DataMapper());
             Discount.Calculators.DiscountCalculator discountCalculator = new Discount.Calculators.DiscountCalculator(order);
-            Order discountedOrder = discountCalculator.CalculateTotalDiscount();
+           discountCalculator
+               .giveDiscountByCategory(20, 1, 2)
+               .freeItems(2)
+               .GlobalDiscount(10, new Money(1000, "EUR"));
             
             var allData = new List<object[]>
             {
 
-                new object[] {discountedOrder}
+                new object[] {order}
                 
             };
 

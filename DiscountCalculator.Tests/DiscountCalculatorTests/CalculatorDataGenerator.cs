@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DAL;
 using Domain.Orders;
+using NodaMoney;
 
 namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
 {
@@ -48,9 +49,9 @@ namespace Discount.Calculators.UnitTests.Services.DiscountCalculatorTests
 
             var allData = new List<object[]>
             {
-                new object[] {order1, order1.total - (order1.total / 10)},
-                new object[] {order2, order2.total - (order2.total / 10)},
-                new object[] {order3, order3.total - (order3.total / 10)},
+                new object[] {order1, order1.total},
+                new object[] {order2, new Money(22.45, "EUR")},
+                new object[] {order3, order3.total},
 
 
             };

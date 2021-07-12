@@ -1,4 +1,16 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=104a8109_002D00ba_002D4ecb_002D8468_002Dbdb93b8426dc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Total_order_minus_ten_pc" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.Total_order_minus_ten_pc&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.Free_switches_category_2&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.Order_Gets_Tool_Discount&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.GET_CATEGORY_DISCOUNT&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.TOTAL_DISCOUNT_TEST_FREE_SWITCHES&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.TOTAL_DISCOUNT_TEST_GLOBAL_DISCOUNT&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::Discount.Calculators.UnitTests.Services.DiscountCalculatorTests.DiscountCalculatorTest.TOTAL_DISCOUNT_WITH_TOOL_DISCOUNT&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::67D28A3E-3276-4062-9C8D-53E3E40BC22A::net5.0::DiscountCalculator.Tests.DALTests.orderToModelmappingTest.orderToOrderDtoMapperTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dcad8397_002De2af_002D4700_002Daabe_002D3d7ec3e7dc53/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Order_Gets_Tool_Discount" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/home/elia/Documents/becode/discounts/DiscountCalculator.Tests" Presentation="&amp;lt;DiscountCalculator.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
